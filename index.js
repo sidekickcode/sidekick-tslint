@@ -9,9 +9,7 @@ const stripJsonComments = require("strip-json-comments");
 const Linter = require('tslint');
 
 const configFileName = 'tslint.json';
-
 const annotationDefaults = {analyserName: 'sidekick-tslint'};
-
 const LOG_FILE = path.join(__dirname, '/debug.log');
 
 //log to file as any stdout will be reported to the analyser runner
@@ -25,10 +23,11 @@ if(require.main === module) {
 module.exports = exports = execute;
 
 function execute() {
+  logger('before parse');
   sidekickAnalyser(function(setup) {
     var config;
 
-    logger(JSON.stringify(setup));
+    logger('after parse');
 
     var conf = (setup.configFiles || {})[configFileName];
     if(conf) {

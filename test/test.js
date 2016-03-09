@@ -22,9 +22,10 @@ describe('tslint analyser', function() {
     function createInput() {
       var filePath = path.join(__dirname, '/fixtures/fixture.ts');
       var fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
+      var configFilePath = __dirname + "/fixtures/tslint.json";
 
       return JSON.stringify(self.config) + "\n"
-          + JSON.stringify({ path: filePath}) + "\n"
+          + JSON.stringify({path: __dirname, filePath: 'fixture.ts', configFiles: configFilePath}) + "\n"
           + fileContent;
     }
 
@@ -34,11 +35,11 @@ describe('tslint analyser', function() {
 
     it('can run analyser from cli', function(done) {
       runFixture(createInput(),
-          function(err, stdout) {
-            if(err) return done(err);
-            self.stdout = stdout;
-            done();
-          });
+        function(err, stdout) {
+          if(err) return done(err);
+          self.stdout = stdout;
+          done();
+        });
     });
 
     it('executes run', function(done) {
@@ -49,6 +50,7 @@ describe('tslint analyser', function() {
       var tsConfigObj = JSON.parse(fs.readFileSync(filePath, { encoding: "utf8" }));
 
       var results = sts._testRun(content, tsConfigObj, 'fixture.ts');
+      expect(results.length).to.equal(23);
       done();
     });
 
