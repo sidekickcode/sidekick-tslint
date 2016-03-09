@@ -22,10 +22,10 @@ describe('tslint analyser', function() {
     function createInput() {
       var filePath = path.join(__dirname, '/fixtures/fixture.ts');
       var fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
-      var configFilePath = __dirname + "/fixtures/tslint.json";
+      var configFileObj = JSON.parse(fs.readFileSync(__dirname + "/fixtures/tslint.json", {encoding: "utf8"}));
 
       return JSON.stringify(self.config) + "\n"
-          + JSON.stringify({path: __dirname, filePath: 'fixture.ts', configFiles: configFilePath}) + "\n"
+          + JSON.stringify({path: __dirname, filePath: 'fixture.ts', configFiles: {'tslint.json' : configFileObj}}) + "\n"
           + fileContent;
     }
 
@@ -55,7 +55,7 @@ describe('tslint analyser', function() {
     });
 
     function runFixture(input, cb) {
-      var cmd = `node ${path.join(__dirname, '../index.js')}`;
+      var cmd = `node ${path.join(__dirname, '../index.js')} --debug=58335`;
       var child = exec(cmd, cb);
       child.stdin.end(input);
     }

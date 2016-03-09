@@ -23,11 +23,8 @@ if(require.main === module) {
 module.exports = exports = execute;
 
 function execute() {
-  logger('before parse');
   sidekickAnalyser(function(setup) {
     var config;
-
-    logger('after parse');
 
     var conf = (setup.configFiles || {})[configFileName];
     if(conf) {
@@ -44,19 +41,17 @@ function execute() {
       config = {};
     }
 
-    logger(JSON.stringify(config));
-
-    var results = run(setup.content, config, setup.fileName);
+    var results = run(setup.content, config, setup.filePath);
     console.log(JSON.stringify({ meta: results }));
   });
 }
 
 module.exports._testRun = run;
-function run(content, config, fileName) {
+function run(content, configObj, fileName) {
   try {
     var options = {
       formatter: "json",
-      configuration: config
+      configuration: configObj
     };
 
     var tslint = new Linter(fileName, content, options);
