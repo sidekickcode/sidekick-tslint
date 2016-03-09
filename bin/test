@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "json"
+
+ENV["HAS_HEADER"] = "1"
+
+r1 = JSON.parse `cat test/empty-config.json test/fixture.js | bin/blob`
+r2 = JSON.parse `cat test/config-no-undef.json test/fixture.js | bin/blob`
+
+r1_count = r1.fetch("meta").length 
+r2_count = r2.fetch("meta").length 
+
+if r1_count > r2_count
+  puts "pass"
+else
+  puts "empty config should have more errors than that with some rules removed"
+end
+
+

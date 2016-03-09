@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export HAS_HEADER=1
+cat test/empty-config.json test/fixture.js | bin/blob
