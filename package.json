@@ -1,7 +1,7 @@
 {
   "name": "sidekick-tslint",
-  "version": "1.0.3",
-  "description": "Static code analysis of TypeScript. Uses tslint.",
+  "version": "1.0.4",
+  "description": "Sidekick analyser that wraps 'tslint'.",
   "keywords": [
     "javascript",
     "typescript",
