@@ -55,7 +55,7 @@ describe('tslint analyser', function() {
     });
 
     function runFixture(input, cb) {
-      var cmd = `node ${path.join(__dirname, '../index.js')} --debug=58335`;
+      var cmd = `node ${path.join(__dirname, '../index.js')} --debug=51699`;
       var child = exec(cmd, cb);
       child.stdin.end(input);
     }

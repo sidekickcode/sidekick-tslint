@@ -1,6 +1,6 @@
 {
   "name": "sidekick-tslint",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Sidekick analyser that wraps 'tslint'.",
   "keywords": [
     "javascript",
@@ -25,7 +25,8 @@
   "dependencies": {
     "sidekick-analyser": "^1.0.1",
     "strip-json-comments": "^2.0.1",
-    "tslint": "^3.5.0"
+    "tslint": "^3.5.0",
+    "typescript": "^1.8.10"
   },
   "devDependencies": {
     "chai": "^3.5.0",
